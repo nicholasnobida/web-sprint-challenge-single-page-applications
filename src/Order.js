@@ -74,6 +74,12 @@ const Order = props => {
         .then(res => {
             setSubmitForm(res.data)
             console.log('success', res)
+            console.log( validName, checkboxData, formData )
+            const checkboxKeys = Object.keys(checkboxData)
+            const checkboxFinal = checkboxKeys.filter(function(key){
+                return checkboxData[key]
+            })
+            alert(`Thanks, ${validName.name} you ordered a ${formData.size} pizza with${checkboxFinal} and special instructions to ${formData.instruct}.`)
         })
         .catch(err => {
             console.log(err)
@@ -95,13 +101,13 @@ const Order = props => {
                     <option value='xl'>X-Large</option>
                 </select><br /><br />
                 <label htmlFor='toppings'>Toppings:</label><br />
-                <input type='checkbox' id='toppings' name='pepperoni' onChange={checkboxInput}></input>
+                <input type='checkbox' id='toppings' name=' pepperoni' onChange={checkboxInput}></input>
                 <span>Pepperoni</span><br />
-                <input type='checkbox' id='toppings' name='pineapple' onChange={checkboxInput}></input>
+                <input type='checkbox' id='toppings' name=' pineapple' onChange={checkboxInput}></input>
                 <span>Pineapple</span><br />
-                <input type='checkbox' id='toppings' name='chicken' onChange={checkboxInput}></input>
+                <input type='checkbox' id='toppings' name=' chicken' onChange={checkboxInput}></input>
                 <span>Chicken</span><br />
-                <input type='checkbox' id='toppings' name='xcheese' onChange={checkboxInput}></input><span>Extra Cheese</span><br /><br />
+                <input type='checkbox' id='toppings' name=' extra cheese' onChange={checkboxInput}></input><span>Extra Cheese</span><br /><br />
                 <label htmlFor='instruct'>Special Instructions:</label><br /> 
                 <input name='instruct' type='text'placeholder='Any condiments?' onChange={inputData}/><br /><br />
                 <button disabled={disabled}>Add to Order</button>

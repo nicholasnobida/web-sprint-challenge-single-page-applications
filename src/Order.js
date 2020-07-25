@@ -18,6 +18,7 @@ const Order = props => {
     const [ errors, setErrors ] = useState({name:''})
     const [ validName, setValidName ] = useState({name:''})
     const [ submitForm, setSubmitForm ] = useState([])
+    const [ finalConfirmation, setFinalConfirmation ] = useState('')
 
     const nameData = event => {
         const name = event.target.name
@@ -79,7 +80,8 @@ const Order = props => {
             const checkboxFinal = checkboxKeys.filter(function(key){
                 return checkboxData[key]
             })
-            alert(`Thanks, ${validName.name} you ordered a ${formData.size} pizza with${checkboxFinal} and special instructions to ${formData.instruct}.`)
+            const finalConfirm = `Thanks, ${validName.name} you ordered a ${formData.size} pizza with${checkboxFinal} and special instructions to ${formData.instruct}.`
+            setFinalConfirmation(finalConfirm)
         })
         .catch(err => {
             console.log(err)
@@ -112,6 +114,10 @@ const Order = props => {
                 <input name='instruct' type='text'placeholder='Any condiments?' onChange={inputData}/><br /><br />
                 <button disabled={disabled}>Add to Order</button>
             </FormDiv>
+            <div>
+                <p>{finalConfirmation}</p>
+            </div>
+
         </OrderBackgroundImg>
     )
 }
